@@ -65,6 +65,25 @@ while command != "exit" and command != "ex":
         with open ('Notes.txt', 'w') as f:
             f.write(new_data)
 
+    elif "del" in command:
+        list_command = command.split()
+        data = open('Notes.txt', 'r')       
+        conteins = data.readlines()
+        for line in range(len(conteins)):
+            if list_command[1] in conteins[line] and "article" in conteins[line]:
+                old_note_body = conteins[line+1]
+                old_note_datetime = conteins[line-1]
+                old_note_article  = conteins[line]
+                old_note_id = conteins[line-2]
+        data.close
+
+
+        with open ('Notes.txt', 'r') as data:
+            old_data = data.read()
+        new_data = old_data.replace(old_note_body, "").replace(old_note_article,"").replace(old_note_datetime,"").replace(old_note_id,"")
+        with open ('Notes.txt', 'w') as f:
+            f.write(new_data)
+
     else:
         print("!Command is not available. Try again")
 
